@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Suprimir elemento de el proyecto «Modulo4_HashMap-Estudiantes»&#x0D;&#x0A;- Proyecto original: «Modulo4_HashMap-Estudiantes»&#x0D;&#x0A;- Elemento original: «Estudiante.java»" description="Suprimir elemento" element1="/src&lt;{Estudiante.java" elements="1" flags="589830" id="org.eclipse.jdt.ui.delete" resources="0" stamp="1725039649003" subPackages="false" version="1.0"/>
+</session>

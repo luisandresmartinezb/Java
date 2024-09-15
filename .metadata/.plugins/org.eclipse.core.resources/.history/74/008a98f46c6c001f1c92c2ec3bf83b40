@@ -1,0 +1,55 @@
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+
+
+public class Estudiantes {
+
+	public static void main(String[] args) 
+	{
+		 String archivoCSV = "src/estudiantes.csv";
+		 String linea = "";
+	     String separadorCSV = ",";
+		
+	     int totalEstudiantes = 0;
+	     int sumaEdades = 0;
+	     
+	     
+	     try (BufferedReader br = new BufferedReader(new FileReader(archivoCSV))) {
+	            // Leer el encabezado
+	            br.readLine();
+	            
+	            // Leer cada línea del archivo CSV
+	            while ((linea = br.readLine()) != null) {
+	                String[] datos = linea.split(separadorCSV);
+	                String nombre = datos[0];
+	                int edad = Integer.parseInt(datos[1]);
+	                String curso = datos[2];
+
+	                // Mostrar los datos del estudiante
+	                System.out.println("Nombre: " + nombre + ", Edad: " + edad + ", Curso: " + curso);
+
+	                // Calcular la suma de las edades
+	                sumaEdades += edad;
+	                totalEstudiantes++;
+	            }
+
+	            // Calcular y mostrar el promedio de edad
+	            if (totalEstudiantes > 0) {
+	                double promedioEdad = (double) sumaEdades / totalEstudiantes;
+	                System.out.println("\nPromedio de edad: " + promedioEdad);
+	            } else {
+	                System.out.println("No hay estudiantes en el archivo.");
+	            }
+
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+		
+		
+
+	}
+
+}
