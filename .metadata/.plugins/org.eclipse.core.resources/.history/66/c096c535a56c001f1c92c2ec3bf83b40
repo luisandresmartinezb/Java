@@ -1,0 +1,56 @@
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.NumberFormat;
+import java.util.Locale;
+import java.util.Scanner;
+
+public class RegistroVentas {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String archivoCSV = "src/ventas.csv";  
+
+     // Ingreso de datos de la venta
+        System.out.println("Ingrese los datos de la nueva venta:");
+        System.out.print("ID de la venta: ");
+        String idVenta = scanner.nextLine();
+        
+        System.out.print("Producto: ");
+        String producto = scanner.nextLine();
+        
+        System.out.print("Cantidad: ");
+        int cantidad = scanner.nextInt();
+        
+        System.out.print("Precio total: ");
+        double precioTotal = scanner.nextDouble();
+        
+        // Formatear el precio total como euros
+        NumberFormat formatoEuro = NumberFormat.getCurrencyInstance(Locale.FRANCE); // Formato de euros
+        String precioTotalFormateado = formatoEuro.format(precioTotal);
+
+        // Escribir los datos en el archivo CSV
+        try (FileWriter fw = new FileWriter(archivoCSV, true); // Abrir en modo append (true)
+             PrintWriter pw = new PrintWriter(fw)) {
+
+            // Verifica si el archivo tiene contenido, y si no tiene, escribe el encabezado
+            if (new java.io.File(archivoCSV).length() == 0) {
+                pw.println("ID de Venta,Producto,Cantidad,Precio Total (EUR)");
+            }
+
+            // Agregar los datos ingresados por el usuario al archivo CSV con el precio formateado
+            pw.println(idVenta + "," + producto + "," + cantidad + "," + precioTotalFormateado);
+            pw.flush();  // Asegura que los datos se escriban inmediatamente
+            
+            System.out.println("La venta ha sido registrada correctamente en el archivo CSV.");
+
+        } catch (IOException e) {
+            System.out.println("Ha ocurrido un error al escribir en el archivo.");
+            e.printStackTrace();
+        }
+        
+        
+        
+        
+    }
+}
